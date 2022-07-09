@@ -14,3 +14,4 @@ echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sysctl -p
 curl https://raw.githubusercontent.com/viv-codes/CSHVcluster/main/install2.sh > install2.sh
 chmod +x install2.sh
+curl https://raw.githubusercontent.com/viv-codes/CSHVcluster/main/kubeprep.sh > kubeprep.sh
