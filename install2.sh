@@ -8,5 +8,5 @@ echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main"  > /etc/apt/sources.list.d/kubernetes.list
 apt update -y && apt install -y cri-o cri-o-runc
 systemctl enable --now crio
-apt install "kubelet=1.24.2-00" "kubeadm=1.24.2-00" "kubectl=1.24.2-00"
+apt install -y "kubelet=1.24.2-00" "kubeadm=1.24.2-00" "kubectl=1.24.2-00"
 apt-mark hold kubelet && apt-mark hold kubeadm && apt-mark hold kubectl
