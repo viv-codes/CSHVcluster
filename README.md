@@ -88,6 +88,24 @@ Ok so vcluster is really really cool and is what caused this whole project, and 
 curl -s -L "https://github.com/loft-sh/vcluster/releases/latest" | sed -nE 's!.*"([^"]*vcluster-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o vcluster && chmod +x vcluster;
 sudo mv vcluster /usr/local/bin;
 ```
+
 To confirm that vcluster is installed properly, run `vcluster --version`
 
-Create a vcluster!!! `vcluster create my-vcluster`
+# Usage
+Ok so this next part is really nice to have `tmux` running for, cause you're going to want to be multiplexing. If you're not familiar, the following commands will help you. More can be found [here](https://tmuxcheatsheet.com/).
+
+| Command | Function |
+|--- | --- |
+| `$ tmux` | starts a new tmux session |
+| `$ tmux ls` | lists open tmux session |
+| `$ tmux a -t` | attaches to last session |
+| `Ctrl`+`b` `d` | Detach from session |
+| `Ctrl`+`b` `x` | Close pane |
+| `Ctrl`+`b` `%` | New vertical pane |
+| `Ctrl`+`b` `"` | New horizontal pane |
+| `Ctrl`+`b` `o` | Toggle between open panes |
+| `Ctrl`+`b` `z` | Toggle pane fullscreen zoom |
+
+
+Create a vcluster!!! `vcluster create my-vcluster`. This starts the vcluster and moves you into the context of your new vcluster. To get started on interfacing with your new cluster, open a new pane in tmux by `Ctrl + b, "`. In that new window, you can now look around and explore your vcluster. Since vclusters function very similarly to a normal cluster, `kubectl` commands will work here!
+
