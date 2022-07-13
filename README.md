@@ -4,6 +4,16 @@ This repo contains info regarding CSH's Vcluster. You most likely won't have to 
 Note: Most of the installation of the base k8s deployment came from [Galen's install guide](https://github.com/galenguyer/k8s), and has just been modified to fit the needs of this project. For an in-depth installation process, read that. If you want to precisely replciate the steps used to deploy the instance of k8s used in this project, follow Galen's guide for basic setup in PVE, then follow the directions below.
 
 # Installation
+CSH's vcluster installation resides on a k8s install I created on proxmox, and includes the following nodes:
+* Proxmox01-nrh
+  * k8s-ctrl01-nrh
+  * k8s-wrkr01-nrh
+* Proxmox02-nrh
+  * k8s-ctrl02-nrh
+  * k8s-wrkr02-nrh
+* Proxmox03-nrh
+  * k8s-ctrl03-nrh
+  * k8s-services-nrh
 ### Services VM setup
 Your services VM will be a vm with similar resources as the rest of your nodes, and will not have k8s installed on it in the same way. You can set it up with kubectl if you wish to use it to administer the rest of your cluster.
 run `apt install haproxy -y` and copy `haproxy.cfg` to `/etc/haproxy/haproxy.cfg`. run `sudo systemctl restart haproxy` to load the new configuration
