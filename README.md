@@ -1,10 +1,9 @@
 # CSHVcluster
-This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the usage section. 
+This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [usage section](#usage). 
 
 Note: Most of the installation of the base k8s deployment came from [Galen's install guide](https://github.com/galenguyer/k8s), and has just been modified to fit the needs of this project. For an in-depth installation process, read that. If you want to precisely replciate the steps used to deploy the instance of k8s used in this project, follow Galen's guide for basic setup in PVE, then follow the directions below.
 
 # Installation
-
 ### Services VM setup
 Your services VM will be a vm with similar resources as the rest of your nodes, and will not have k8s installed on it in the same way. You can set it up with kubectl if you wish to use it to administer the rest of your cluster.
 run `apt install haproxy -y` and copy `haproxy.cfg` to `/etc/haproxy/haproxy.cfg`. run `sudo systemctl restart haproxy` to load the new configuration
@@ -91,6 +90,7 @@ sudo mv vcluster /usr/local/bin;
 
 To confirm that vcluster is installed properly, run `vcluster --version`
 
+ 
 # Usage
 Ok so this next part is really nice to have `tmux` running for, cause you're going to want to be multiplexing. If you're not familiar, the following commands are the bare minimum to do what you'll want to do here. More can be found [here](https://tmuxcheatsheet.com/).
 
