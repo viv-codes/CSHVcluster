@@ -1,5 +1,5 @@
 # CSHVcluster
-This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [usage]()Citation needed section. 
+This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the usage section. 
 
 Note: Most of the installation of the base k8s deployment came from [Galen's install guide](https://github.com/galenguyer/k8s), and has just been modified to fit the needs of this project. For an in-depth installation process, read that. If you want to precisely replciate the steps used to deploy the instance of k8s used in this project, follow Galen's guide for basic setup in PVE, then follow the directions below.
 
@@ -92,7 +92,7 @@ sudo mv vcluster /usr/local/bin;
 To confirm that vcluster is installed properly, run `vcluster --version`
 
 # Usage
-Ok so this next part is really nice to have `tmux` running for, cause you're going to want to be multiplexing. If you're not familiar, the following commands will help you. More can be found [here](https://tmuxcheatsheet.com/).
+Ok so this next part is really nice to have `tmux` running for, cause you're going to want to be multiplexing. If you're not familiar, the following commands are the bare minimum to do what you'll want to do here. More can be found [here](https://tmuxcheatsheet.com/).
 
 | Command | Function |
 |--- | --- |
@@ -109,3 +109,26 @@ Ok so this next part is really nice to have `tmux` running for, cause you're goi
 
 Create a vcluster!!! `vcluster create my-vcluster`. This starts the vcluster and moves you into the context of your new vcluster. To get started on interfacing with your new cluster, open a new pane in tmux by `Ctrl + b, "`. In that new window, you can now look around and explore your vcluster. Since vclusters function very similarly to a normal cluster, `kubectl` commands will work here!
 
+First, run `kubectl config current-context` to ensure that you're in the proper context. On a fresh vcluster, the result should look like this:
+```
+root@k8s-ctrl01-nrh:~# kubectl get namespace
+NAME              STATUS   AGE
+default           Active   3h12m
+kube-system       Active   3h12m
+kube-public       Active   3h12m
+kube-node-lease   Active   3h12m
+```
+Here are some sample commands that show you your k8s environment:
+* Get namespaces in your cluster by running `kubectl get namespace`
+* Get active pods in your cluster by running `kubectl get pods --all-namespaces`
+
+Let's create a namespace and sample deployment, so that you can start learning k8s! 
+```
+kubectl create namespace demo-nginx
+kubectl create deployment nginx-deployment -n demo-nginx --image=nginx
+```
+and
+```
+kubectl get pods -n demo-nginx
+```
+That's all there is to it! 
