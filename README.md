@@ -1,5 +1,5 @@
 # CSHVcluster
-This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [usage section](#usage). 
+This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [setup section](#setup). 
 
 Note: Most of the installation of the base k8s deployment came from [Galen's install guide](https://github.com/galenguyer/k8s), and has just been modified to fit the needs of this project. For an in-depth installation process, read that. If you want to precisely replciate the steps used to deploy the instance of k8s used in this project, follow Galen's guide for basic setup in PVE, then follow the directions below.
 
@@ -100,6 +100,37 @@ sudo mv vcluster /usr/local/bin;
 
 To confirm that vcluster is installed properly, run `vcluster --version`
 
+# Setup
+## Connecting to the cluster
+First things first, you'll need kubernetes installed on your local machine. If you're on linux, you can follow the directions below. Otherwise, find the directions for your OS [here](https://kubernetes.io/docs/tasks/tools/).
+```
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+Then run the following to confirm that installation completed successfully:
+```
+kubectl version --client
+```
+If this responds correctly, your next step is to have an RTP provide you with the kube config file (maybe, I also might have automated this). Place this file in your local machine's ~/.kube/config file. 
+
+## Installing helm
+Instructions for other OS [here](https://helm.sh/docs/intro/install/).
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+## Installing vcluster
+Instructions for other OS [here](https://www.vcluster.com/docs/getting-started/setup)
+```
+curl -s -L "https://github.com/loft-sh/vcluster/releases/latest" | sed -nE 's!.*"([^"]*vcluster-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o vcluster && chmod +x vcluster;
+sudo mv vcluster /usr/local/bin;
+vcluster --version
+```
+Now you should be able to run `kubectl get nodes`, `vcluster list`, and `vcluster create` to interact with the cluster. 
  
 # Usage
 Ok so this next part is really nice to have `tmux` running for, cause you're going to want to be multiplexing. If you're not familiar, the following commands are the bare minimum to do what you'll want to do here. More can be found [here](https://tmuxcheatsheet.com/).
