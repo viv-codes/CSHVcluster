@@ -100,6 +100,7 @@ sudo mv vcluster /usr/local/bin;
 
 To confirm that vcluster is installed properly, run `vcluster --version`
 
+<<<<<<< HEAD
 # Setup
 ## Connecting to the cluster
 First things first, you'll need kubernetes installed on your local machine. If you're on linux, you can follow the directions below. Otherwise, find the directions for your OS [here](https://kubernetes.io/docs/tasks/tools/).
@@ -173,3 +174,6 @@ and
 kubectl get pods -n demo-nginx
 ```
 That's all there is to it! 
+
+# User Guide
+So. You're a member who has had a cluster created for you by an RTP.
