@@ -148,9 +148,6 @@ Ok so this next part is really nice to have `tmux` running for, cause you're goi
 | `Ctrl`+`b` `o` | Toggle between open panes |
 | `Ctrl`+`b` `z` | Toggle pane fullscreen zoom |
 
-
-Create a vcluster!!! `vcluster create my-vcluster`. This starts the vcluster and moves you into the context of your new vcluster. To get started on interfacing with your new cluster, open a new pane in tmux by `Ctrl + b, "`. In that new window, you can now look around and explore your vcluster. Since vclusters function very similarly to a normal cluster, `kubectl` commands will work here!
-
 First, run `kubectl config current-context` to ensure that you're in the proper context. On a fresh vcluster, the result should look like this:
 ```
 root@k8s-ctrl01-nrh:~# kubectl get namespace
@@ -174,6 +171,3 @@ and
 kubectl get pods -n demo-nginx
 ```
 That's all there is to it! 
-
-# User Guide
-So. You're a member who has had a cluster created for you by an RTP.
