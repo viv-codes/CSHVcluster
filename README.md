@@ -1,5 +1,5 @@
 # CSHVcluster
-This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [setup section](#setup). 
+This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [setup section](#setup). If you're looking for a cleaner, more polished install guide, check out the wiki page here [citation needed]
 
 Note: Most of the installation of the base k8s deployment came from [Galen's install guide](https://github.com/galenguyer/k8s), and has just been modified to fit the needs of this project. For an in-depth installation process, read that. If you want to precisely replciate the steps used to deploy the instance of k8s used in this project, follow Galen's guide for basic setup in PVE, then follow the directions below.
 
@@ -100,7 +100,6 @@ sudo mv vcluster /usr/local/bin;
 
 To confirm that vcluster is installed properly, run `vcluster --version`
 
-<<<<<<< HEAD
 # Setup
 ## Connecting to the cluster
 First things first, you'll need kubernetes installed on your local machine. If you're on linux, you can follow the directions below. Otherwise, find the directions for your OS [here](https://kubernetes.io/docs/tasks/tools/).
@@ -131,6 +130,16 @@ curl -s -L "https://github.com/loft-sh/vcluster/releases/latest" | sed -nE 's!.*
 sudo mv vcluster /usr/local/bin;
 vcluster --version
 ```
+
+Because you are not an admin user outside of your namespace, your kubectl commands will return errors unless you append `-n vcluster-$uname` to the end of them, assuming that `$uname` is your CSH username. For example, my namespace would look like `vcluster-vivi`. This is because you only have permissions to interact with stuff inside your namespace, and using this flag makes it so that you are only looking for things within your namespace. 
+
+Here are so example commands you can run to start familiarizing yourself with your vcluster:
+```
+kubectl get nodes -n vcluster-$uname
+
+kubectl get pods -n vcluster-$uname
+```
+
 Now you should be able to run `kubectl get nodes`, `vcluster list`, and `vcluster create` to interact with the cluster. 
  
 # Usage
@@ -157,6 +166,7 @@ kube-system       Active   3h12m
 kube-public       Active   3h12m
 kube-node-lease   Active   3h12m
 ```
+
 Here are some sample commands that show you your k8s environment:
 * Get namespaces in your cluster by running `kubectl get namespace`
 * Get active pods in your cluster by running `kubectl get pods --all-namespaces`
