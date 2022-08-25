@@ -1,5 +1,5 @@
 # CSHVcluster
-This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [setup section](#setup). If you're looking for a cleaner, more polished install guide, check out the wiki page here [citation needed]
+This repo contains info regarding CSH's Vcluster. You most likely won't have to care about the 'Installation' or 'Management' steps unless you're an RTP, if you're just looking to use the vcluster, skip to the [setup section](#setup).
 
 Note: Most of the installation of the base k8s deployment came from [Galen's install guide](https://github.com/galenguyer/k8s), and has just been modified to fit the needs of this project. For an in-depth installation process, read that. If you want to precisely replciate the steps used to deploy the instance of k8s used in this project, follow Galen's guide for basic setup in PVE, then follow the directions below.
 
@@ -91,7 +91,7 @@ k8s-wrkr02-nrh   Ready    <none>          2d14h   v1.24.2
 ```
 
 ## Vcluster setup
-Ok so vcluster is really really cool and is what caused this whole project, and now you get to install it!! yay!! Vcluster docs are [here](https://www.vcluster.com/docs/getting-started/setup), if you run into any issues or just want to read them :3
+Ok so vcluster is really really cool and is what precipitated this whole project, and now you get to install it!! yay!! Vcluster docs are [here](https://www.vcluster.com/docs/getting-started/setup), if you run into any issues or just want to read them :3
 ### Download and install vcluster cli
 ```
 curl -s -L "https://github.com/loft-sh/vcluster/releases/latest" | sed -nE 's!.*"([^"]*vcluster-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o vcluster && chmod +x vcluster;
