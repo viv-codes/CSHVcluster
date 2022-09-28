@@ -100,6 +100,19 @@ sudo mv vcluster /usr/local/bin;
 
 To confirm that vcluster is installed properly, run `vcluster --version`
 
+# Administration
+This section only applies to RTPs. 
+## Accessing the cluster
+The cluster can be accessed from freedom when you are signed in as root. 
+## Creating Users
+To create a new user:
+1. Access the cluster
+2. Be in `/root`
+3. `./usersetup.sh`
+4. Enter the user's username at the prompt. This must match case and spelling exactly to their CSH username. 
+5. The script will now prompt you to visually check if the homedir location looks correct. If there's an error message, or the homedir location looks wrong, use `Ctrl+C` to exit the program. Otherwise, press enter to continue. 
+6. The script will create the user. Eventually, it will complete the creation of the user's vcluster, and will say something along the lines of 'Vcluster successfully created`, then list a set of IP addresses. Now you can press `Ctrl+C` to complete the running of the program, which exits you from the vcluster's context, brings you back into the kubernetes admin context, and completes the setup. The users will now be able to interact with the cluster from any user machine with their homedir, kubectl, and vcluster installed. 
+
 # Setup
 ## Connecting to the cluster
 First things first, you'll need kubernetes installed on your local machine. If you're on linux, you can follow the directions below. Otherwise, find the directions for your OS [here](https://kubernetes.io/docs/tasks/tools/).
@@ -141,7 +154,7 @@ kubectl get pods -n vcluster-$uname
 ```
 
 Now you should be able to run `kubectl get nodes`, `vcluster list`, and `vcluster create` to interact with the cluster. 
- 
+
 # Usage
 Ok so this next part is really nice to have `tmux` running for, cause you're going to want to be multiplexing. If you're not familiar, the following commands are the bare minimum to do what you'll want to do here. More can be found [here](https://tmuxcheatsheet.com/).
 
